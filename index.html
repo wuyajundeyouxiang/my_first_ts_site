@@ -1,3 +1,24 @@
+<!-- <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>TS 网站</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Drizzle Woo's toolbox!</h1>
+        <button id="colorBtn">换个颜色（改变背景）</button>
+        <div class="links">
+            <a href="https://github.com" target="_blank" id="githubBtn" class="btn">我的 GitHub</a>
+            <a href="https://baidu.com" target="_blank" id="baiduSiteBtn" class="btn">我的 baidu</a>
+        </div>
+    </div>
+    
+    <script type="module" src="script.ts"></script>
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -6,15 +27,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 🍎 新增：苹果风格导航栏骨架 -->
+    <nav class="apple-navbar">
+        <div class="nav-content">
+            <a href="#" class="nav-link logo"></a>
+            <a href="#" class="nav-link">Store</a>
+            <a href="#" class="nav-link">Mac</a>
+            <a href="#" class="nav-link">iPad</a>
+            <a href="#" class="nav-link">iPhone</a>
+            <a href="#" class="nav-link">Support</a>
+        </div>
+    </nav>
+
+    <!-- 你原本的变色卡片内容 -->
     <div class="container">
-        <h1>Drizzle Woo TypeScript!</h1>
+        <h1>Hello TypeScript!</h1>
         <button id="colorBtn">换个心情（改变背景）</button>
         <div class="links">
             <a href="https://github.com" target="_blank" id="githubBtn" class="btn">我的 GitHub</a>
-            <a href="https://baidu.com" target="_blank" id="baiduSiteBtn" class="btn">我的 baidu</a>
+            <a href="https://baidu.com" target="_blank" id="otherSiteBtn" class="btn">百度链接</a>
         </div>
     </div>
-    <!-- 引入编译后的 JS -->
+
     <script type="module" src="script.ts"></script>
 </body>
 </html>
+

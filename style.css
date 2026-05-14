@@ -18,8 +18,10 @@ body {
     border-radius: 8px;
 }
 */
+
+
 /* ==========================================================================
-   1. CSS 变量 (Variables) - 就像 TypeScript 里的变量，方便一键修改主题
+   1. CSS 变量 (Variables) - 全局主题配置，一改全改
    ========================================================================== */
 :root {
   --primary-color: #4f46e5;       /* 按钮的主题深蓝色 */
@@ -31,7 +33,7 @@ body {
 }
 
 /* ==========================================================================
-   2. 全局重置与 Flexbox 布局 - 决定页面如何居中排版
+   2. 全局重置与 布局 - 决定页面如何排版
    ========================================================================== */
 body {
   margin: 0;
@@ -40,24 +42,24 @@ body {
   color: var(--text-main);
   background-color: #f3f4f6;       /* 网页初始的浅灰背景 */
   
-  /* Flexbox 布局：让网页里所有的东西在屏幕上绝对居中 */
+  /* Flexbox 布局：让网页里所有的东西在垂直方向整齐排列 */
   display: flex;
-  justify-content: center;        /* 水平居中 */
-  align-items: center;            /* 垂直居中 */
-  height: 100vh;                  /* 撑满手机或电脑屏幕的高度 */
+  flex-direction: column;
+  align-items: center;            
+  min-height: 100vh;                  
   
-  /* 丝滑动效的核心：当 TypeScript 改变背景色时，产生 0.6 秒的平滑渐变过度 */
+  /* 丝滑动效核心：当 TypeScript 改变背景色时，产生 0.6 秒的平滑渐变过渡 */
   transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ==========================================================================
-   3. 卡片容器 - 现代流行的“磨砂玻璃卡片”效果
-   ========================================================================== */
+/* 让变色卡片容器往下靠一点，给顶部的苹果导航栏留出空间 */
 .container {
+  margin-top: 120px;
   background: var(--bg-card);
   padding: 40px;
   border-radius: var(--radius-lg);
   text-align: center;
+  width: 320px; /* 固定卡片宽度，使其在大屏小屏下都保持美观 */
   
   /* 毛玻璃效果核心：让卡片背后的背景模糊 */
   backdrop-filter: blur(12px);
@@ -77,10 +79,59 @@ h1 {
 }
 
 /* ==========================================================================
-   4. 按钮样式 (Buttons) - 质感、动效与反馈
+   3. 🍎 苹果官方风格导航栏样式
+   ========================================================================== */
+.apple-navbar {
+  position: fixed;            /* 钉在屏幕顶部，往下滚动网页时它也不会消失 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;               /* 经典苹果导航栏高度 */
+  background: rgba(255, 255, 255, 0.8); /* 微微透明的白色背景 */
+  backdrop-filter: blur(20px);/* 苹果标志性的毛玻璃模糊效果 */
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 底部极其低调的一条分割线 */
+  z-index: 9999;              /* 确保导航栏永远盖在最上层 */
+  display: flex;
+  justify-content: center;
+}
+
+/* 限制导航栏内部文字的最大宽度，并在大屏幕上居中 */
+.nav-content {
+  width: 100%;
+  max-width: 1024px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* 让各个标签（Store, Mac等）在横向均匀拉开距离 */
+  align-items: center;
+  padding: 0 22px;
+  box-sizing: border-box;
+}
+
+/* 导航栏文字标签的基本样式 */
+.nav-link {
+  color: rgba(0, 0, 0, 0.56); /* 苹果官方最爱用的低饱和度灰色，显得非常高级 */
+  text-decoration: none;
+  font-size: 12px;            /* 极简的小字体 */
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+/* 苹果小图标特殊处理，让它稍微大一点点 */
+.logo {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* 当鼠标悬停在标签上时，文字颜色微微变深变亮，和苹果官网完全一致 */
+.nav-link:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================================
+   4. 基础按钮样式 (Buttons) - 质感与形状统一
    ========================================================================== */
 button, .btn {
-  /* 统一按钮的基础形状 */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -90,12 +141,12 @@ button, .btn {
   border-radius: var(--radius-md);
   cursor: pointer;
   text-decoration: none; /* 去掉链接的下划线 */
-  
-  /* 动效：当鼠标放上去时，颜色、阴影、缩放都要平滑变化 */
-  transition: all 0.2s ease;
+  width: 100%;           /* 按钮宽度撑满容器 */
+  box-sizing: border-box;
+  transition: all 0.2s ease; /* 动效平滑过渡 */
 }
 
-/* “换个心情”主要按钮 */
+/* “换个心情”主要按钮样式 */
 #colorBtn {
   background-color: var(--primary-color);
   color: white;
@@ -115,49 +166,36 @@ button, .btn {
   transform: translateY(0); /* 压回地面 */
 }
 
-/* “我的 GitHub”次要连接按钮 */
+/* ==========================================================================
+   5. 底部链接按钮组与间距控制
+   ========================================================================== */
 .links {
   margin-top: 24px;   /* 整个链接区域和上方“换个心情”按钮的距离 */
-  
-  /* 开启 Flex 布局，让里面的两个按钮垂直排列 */
   display: flex;
   flex-direction: column; 
-  
-  /* 💡 核心控制：让这组按钮之间保持 12 像素的固定间距 */
-  gap: 12px; 
+  gap: 12px;          /* 核心控制：利用弹性盒子让这组按钮之间保持固定的间距 */
 }
 
-.btn {
-  background-color: transparent;
-  color: #4b5563;
-  border: 1px solid #d1d5db;
-  width: calc(100% - 48px); /* 让连接按钮和主按钮一样宽 */
-}
-
-/* 鼠标悬停在次要按钮上的效果 */
-.btn:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  color: var(--text-main);
-  border-color: #9ca3af;
-}
-
-#githubBtn, #baiduSiteBtn {
+/* 
+   强行把底部的“GitHub 按钮”和“百度链接按钮”的背景色、文字颜色和阴影
+   改得和上面的主按钮完全一模一样，形成大厂重用风格
+*/
+#githubBtn, #otherSiteBtn {
   background-color: var(--primary-color);
   color: white;
   border: none;
   box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
-  width: 100%;             /* 撑满容器宽度 */
-  box-sizing: border-box;  /* 确保内边距不会把按钮挤变形 */
 }
 
-#githubBtn:hover, #baiduSiteBtn:hover {
+/* 鼠标悬停在链接按钮上的效果，保持完美一致 */
+#githubBtn:hover, #otherSiteBtn:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px); 
   box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
 }
 
-/* 鼠标按下去（Active）那一瞬间的下沉反馈 */
-#githubBtn:active, #baiduSiteBtn:active {
+/* 鼠标按下去那一瞬间的下沉反馈 */
+#githubBtn:active, #otherSiteBtn:active {
   transform: translateY(0); 
 }
 

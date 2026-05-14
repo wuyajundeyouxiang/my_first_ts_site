@@ -134,4 +134,23 @@ button, .btn {
   border-color: #9ca3af;
 }
 
+#githubBtn, #baiduSiteBtn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+  width: 100%;             /* 撑满容器宽度 */
+  box-sizing: border-box;  /* 确保内边距不会把按钮挤变形 */
+}
+
+#githubBtn:hover, #baiduBtn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+/* 鼠标按下去（Active）那一瞬间的下沉反馈 */
+#githubBtn:active, #baiduBtn:active {
+  transform: translateY(0); 
+}
 

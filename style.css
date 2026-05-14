@@ -117,7 +117,14 @@ button, .btn {
 
 /* “我的 GitHub”次要连接按钮 */
 .links {
-  margin-top: 16px;
+  margin-top: 24px;   /* 整个链接区域和上方“换个心情”按钮的距离 */
+  
+  /* 开启 Flex 布局，让里面的两个按钮垂直排列 */
+  display: flex;
+  flex-direction: column; 
+  
+  /* 💡 核心控制：让这组按钮之间保持 12 像素的固定间距 */
+  gap: 12px; 
 }
 
 .btn {

@@ -7,16 +7,28 @@
 </head>
 <body>
 
-    <!-- 🍎 极简导航栏控件 -->
     <nav class="apple-navbar">
-        <div class="nav-content">
-            <!-- 我们给每个标签发一张“身份证”(id)，明天用 TypeScript 精准抓取它们 -->
-            <a href="#" id="tabMac" class="nav-link">Mac</a>
-            <a href="#" id="tabIpad" class="nav-link">iPad</a>
-            <a href="#" id="tabIphone" class="nav-link">iPhone</a>
-        </div>
-    </nav>
-
+    <div class="nav-content">
+        <!-- Mac 标签 -->
+        <a href="#" id="tabMac" class="nav-link">
+            <!-- 我们直接使用网络上免费的苹果官方高清图标链接 -->
+            <img src="https://apple.com.cn" alt="Mac" class="tab-icon">
+            <span>Mac</span>
+        </a>
+        
+        <!-- iPad 标签 -->
+        <a href="#" id="tabIpad" class="nav-link">
+            <img src="https://apple.com.cn" alt="iPad" class="tab-icon">
+            <span>iPad</span>
+        </a>
+        
+        <!-- iPhone 标签 -->
+        <a href="#" id="tabIphone" class="nav-link">
+            <img src="https://apple.com.cn" alt="iPhone" class="tab-icon">
+            <span>iPhone</span>
+        </a>
+    </div>
+</nav>
     <!-- 核心入口 -->
     <script type="module" src="script.ts"></script>
 </body>

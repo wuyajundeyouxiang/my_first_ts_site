@@ -27,14 +27,39 @@ body {
 
 /* 标签样式 */
 .nav-link {
-  color: rgba(0, 0, 0, 0.56);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
+    color: rgba(0, 0, 0, 0.56);
+    text-decoration: none;
+    font-size: 12px;
+    /* 配合图标，文字改小一点 */
+    font-weight: 500;
+
+    /* 💡 核心排版：开启弹性盒子，并强制里面的图片和文字上下垂直排列 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 横向居中对齐 */
+    justify-content: center;
+    /* 纵向居中对齐 */
+    gap: 6px;
+    /* 💡 核心控制：控制图片和文字之间的上下距离 */
+
+    transition: all 0.2s ease;
 }
+
+.tab-icon {
+  width: 40px;               /* 限制图标宽度为 40 像素 */
+  height: 40px;              /* 限制图标高度为 40 像素 */
+  object-fit: contain;       /* 确保图片缩放时不会变形扭曲 */
+  opacity: 0.8;              /* 给图片也来一点点苹果的高级灰透明度 */
+  transition: opacity 0.2s ease;
+}
+
 
 /* 悬停变黑 */
 .nav-link:hover {
   color: rgba(0, 0, 0, 0.9);
+}
+
+.nav-link:hover .tab-icon {
+  opacity: 1;                /* 鼠标放上去时，图片变回 100% 不透明 */
 }

@@ -47,11 +47,20 @@ body {
 }
 
 .tab-icon {
-  width: 40px;               /* 限制图标宽度为 40 像素 */
-  height: 40px;              /* 限制图标高度为 40 像素 */
-  object-fit: contain;       /* 确保图片缩放时不会变形扭曲 */
-  opacity: 0.8;              /* 给图片也来一点点苹果的高级灰透明度 */
-  transition: opacity 0.2s ease;
+width: 24px;
+    /* 限制图标宽度为 40 像素 */
+    height: 24px;
+    /* 限制图标高度为 40 像素 */
+    object-fit: contain;
+    /* 确保图片缩放时不会变形扭曲 */
+    opacity: 0.6;
+    /* 给图片也来一点点苹果的高级灰透明度 */
+
+    filter: brightness(0);
+    pointer-events: none;
+
+
+    transition: all 0.2s ease;
 }
 
 

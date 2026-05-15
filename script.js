@@ -17,7 +17,7 @@ macButton.addEventListener('click', (event) => {
   document.body.style.backgroundColor = '#1a202c'; 
   
   // 发送调试密电：你昨晚学会的 Console 打印，右键点击“检查”切换到 Console 就能看到
-  console.log('用户点击了 Mac 标签！背景成功切换为深空灰。');
+  console.log('用户点击了 Mac123 标签！背景成功切换为深空灰。');
 });
 
 // 🍏 逻辑 B：当用户点击 iPad 标签时

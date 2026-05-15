@@ -47,19 +47,11 @@ body {
 }
 
 .tab-icon {
-width: 24px;
-    /* 限制图标宽度为 40 像素 */
-    height: 24px;
-    /* 限制图标高度为 40 像素 */
-    object-fit: contain;
-    /* 确保图片缩放时不会变形扭曲 */
-    opacity: 0.6;
-    /* 给图片也来一点点苹果的高级灰透明度 */
-
-    filter: brightness(0);
+    width: 24px;     /* 限制图标宽度为 40 像素 */
+    height: 24px;    /* 限制图标高度为 40 像素 */
+    stroke: rgba(0, 0, 0, 0.56); /* 给图标描边也用上苹果的高级灰 */
+   
     pointer-events: none;
-
-
     transition: all 0.2s ease;
 }
 
@@ -70,5 +62,5 @@ width: 24px;
 }
 
 .nav-link:hover .tab-icon {
-  opacity: 1;                /* 鼠标放上去时，图片变回 100% 不透明 */
+   stroke: rgba(0, 0, 0, 0.9);
 }

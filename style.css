@@ -1,201 +1,40 @@
-/*
-body {
-    transition: background 0.4s ease;
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    font-family: system-ui;
-}
-.container { text-align: center; }
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-}
-*/
-
-
-/* ==========================================================================
-   1. CSS 变量 (Variables) - 全局主题配置，一改全改
-   ========================================================================== */
-:root {
-  --primary-color: #4f46e5;       /* 按钮的主题深蓝色 */
-  --primary-hover: #4338ca;       /* 按钮悬停时的颜色 */
-  --text-main: #1f2937;           /* 主要文字颜色（深灰，比纯黑更高级） */
-  --bg-card: rgba(255, 255, 255, 0.75); /* 带有透明度的白色，用于磨砂玻璃效果 */
-  --radius-lg: 16px;              /* 大圆角 */
-  --radius-md: 8px;               /* 中圆角 */
-}
-
-/* ==========================================================================
-   2. 全局重置与 布局 - 决定页面如何排版
-   ========================================================================== */
 body {
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, sans-serif; /* 苹果/安卓系统原生高级字体 */
-  color: var(--text-main);
-  background-color: #f3f4f6;       /* 网页初始的浅灰背景 */
-  
-  /* Flexbox 布局：让网页里所有的东西在垂直方向整齐排列 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;            
-  min-height: 100vh;                  
-  
-  /* 丝滑动效核心：当 TypeScript 改变背景色时，产生 0.6 秒的平滑渐变过渡 */
-  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* 让变色卡片容器往下靠一点，给顶部的苹果导航栏留出空间 */
-.container {
-  margin-top: 120px;
-  background: var(--bg-card);
-  padding: 40px;
-  border-radius: var(--radius-lg);
-  text-align: center;
-  width: 320px; /* 固定卡片宽度，使其在大屏小屏下都保持美观 */
-  
-  /* 毛玻璃效果核心：让卡片背后的背景模糊 */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  
-  /* 卡片的阴影，让它看起来像悬浮在背景上 */
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
-              0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-h1 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 24px;
-  letter-spacing: -0.5px; /* 让字体更紧凑高级 */
-}
-
-/* ==========================================================================
-   3. 🍎 苹果官方风格导航栏样式
-   ========================================================================== */
-.apple-navbar {
-  position: fixed;            /* 钉在屏幕顶部，往下滚动网页时它也不会消失 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 48px;               /* 经典苹果导航栏高度 */
-  background: rgba(255, 255, 255, 0.8); /* 微微透明的白色背景 */
-  backdrop-filter: blur(20px);/* 苹果标志性的毛玻璃模糊效果 */
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* 底部极其低调的一条分割线 */
-  z-index: 9999;              /* 确保导航栏永远盖在最上层 */
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f3f4f6; /* 初始灰色背景 */
   display: flex;
   justify-content: center;
-}
-
-/* 限制导航栏内部文字的最大宽度，并在大屏幕上居中 */
-.nav-content {
-  width: 100%;
-  max-width: 1024px;
-  height: 100%;
-  display: flex;
-  justify-content: space-between; /* 让各个标签（Store, Mac等）在横向均匀拉开距离 */
   align-items: center;
-  padding: 0 22px;
-  box-sizing: border-box;
+  height: 100vh; /* 让导航栏在拆解演示中居中显示，方便观察 */
 }
 
-/* 导航栏文字标签的基本样式 */
+/* 导航栏外壳 */
+.apple-navbar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 30px; /* 改成胶囊形状，更好看 */
+  padding: 10px 20px;
+}
+
+/* 内部弹性盒子布局：让三个标签横向排开 */
+.nav-content {
+  display: flex;
+  gap: 30px; /* 标签之间的间距 */
+}
+
+/* 标签样式 */
 .nav-link {
-  color: rgba(0, 0, 0, 0.56); /* 苹果官方最爱用的低饱和度灰色，显得非常高级 */
+  color: rgba(0, 0, 0, 0.56);
   text-decoration: none;
-  font-size: 12px;            /* 极简的小字体 */
-  font-weight: 400;
-  transition: color 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
-/* 苹果小图标特殊处理，让它稍微大一点点 */
-.logo {
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-/* 当鼠标悬停在标签上时，文字颜色微微变深变亮，和苹果官网完全一致 */
+/* 悬停变黑 */
 .nav-link:hover {
   color: rgba(0, 0, 0, 0.9);
 }
-
-/* ==========================================================================
-   4. 基础按钮样式 (Buttons) - 质感与形状统一
-   ========================================================================== */
-button, .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  text-decoration: none; /* 去掉链接的下划线 */
-  width: 100%;           /* 按钮宽度撑满容器 */
-  box-sizing: border-box;
-  transition: all 0.2s ease; /* 动效平滑过渡 */
-}
-
-/* “换个心情”主要按钮样式 */
-#colorBtn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
-}
-
-/* 鼠标悬停在主要按钮上的效果 */
-#colorBtn:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-2px); /* 按钮微微向上悬浮 2 像素 */
-  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
-}
-
-/* 鼠标按下去那一瞬间的反馈 */
-#colorBtn:active {
-  transform: translateY(0); /* 压回地面 */
-}
-
-/* ==========================================================================
-   5. 底部链接按钮组与间距控制
-   ========================================================================== */
-.links {
-  margin-top: 24px;   /* 整个链接区域和上方“换个心情”按钮的距离 */
-  display: flex;
-  flex-direction: column; 
-  gap: 12px;          /* 核心控制：利用弹性盒子让这组按钮之间保持固定的间距 */
-}
-
-/* 
-   强行把底部的“GitHub 按钮”和“百度链接按钮”的背景色、文字颜色和阴影
-   改得和上面的主按钮完全一模一样，形成大厂重用风格
-*/
-#githubBtn, #otherSiteBtn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
-}
-
-/* 鼠标悬停在链接按钮上的效果，保持完美一致 */
-#githubBtn:hover, #otherSiteBtn:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-2px); 
-  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
-}
-
-/* 鼠标按下去那一瞬间的下沉反馈 */
-#githubBtn:active, #otherSiteBtn:active {
-  transform: translateY(0); 
-}
-

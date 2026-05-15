@@ -3,41 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的 TS 苹果设备体验站</title>
+    <title>单组件拆解：苹果Tab控件</title>
 </head>
 <body>
 
-    <!-- 🍎 苹果官方风格导航栏骨架 -->
+    <!-- 🍎 极简导航栏控件 -->
     <nav class="apple-navbar">
         <div class="nav-content">
-            <a href="#" class="nav-link logo"></a>
-            <a href="#" id="tabStore" class="nav-link">Store</a>
+            <!-- 我们给每个标签发一张“身份证”(id)，明天用 TypeScript 精准抓取它们 -->
             <a href="#" id="tabMac" class="nav-link">Mac</a>
             <a href="#" id="tabIpad" class="nav-link">iPad</a>
             <a href="#" id="tabIphone" class="nav-link">iPhone</a>
-            <a href="#" id="tabSupport" class="nav-link">Support</a>
         </div>
     </nav>
 
-    <!-- 变色卡片容器 -->
-    <div class="container">
-        <!-- 专门用来装设备内容的盒子，方便用 TS 动态修改里面的文字 -->
-        <div id="deviceContent">
-            <h1 id="pageTitle">Hello TypeScript!</h1>
-            <p id="pageDescription">点击上方苹果导航栏，或者点击下方按钮改变心情。</p>
-        </div>
-
-        <!-- 换个心情主要按钮 -->
-        <button id="colorBtn">换个心情（改变背景）</button>
-        
-        <!-- 底部链接按钮组 -->
-        <div class="links">
-            <a href="https://github.com" target="_blank" id="githubBtn" class="btn">我的 GitHub</a>
-            <a href="https://baidu.com" target="_blank" id="otherSiteBtn" class="btn">百度链接</a>
-        </div>
-    </div>
-
-    <!-- 💡 项目绝对核心入口：引入你的 TypeScript 大脑（Vite 会在云端自动编译它） -->
+    <!-- 核心入口 -->
     <script type="module" src="script.ts"></script>
 </body>
 </html>

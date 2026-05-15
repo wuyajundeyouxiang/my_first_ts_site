@@ -1,66 +1,84 @@
+/* ==========================================================================
+   1. 全局重置与基础排版
+   ========================================================================== */
 body {
   margin: 0;
   padding: 0;
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: #f3f4f6; /* 初始灰色背景 */
+  background-color: #f3f4f6; /* 初始状态为苹果经典的浅灰背景 */
+  
+  /* 开启 Flexbox 弹性盒子布局，让导航栏在演示时完美居中 */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* 让导航栏在拆解演示中居中显示，方便观察 */
+  height: 100vh;
+  
+  /* 丝滑动效：当点击事件触发、背景色改变时，产生 0.4 秒的平滑晕染过渡 */
+  transition: background-color 0.4s ease;
 }
 
-/* 导航栏外壳 */
+/* ==========================================================================
+   2. 苹果风格胶囊导航栏外壳
+   ========================================================================== */
 .apple-navbar {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.85); /* 带有透明度的优雅纯白背景 */
+  backdrop-filter: blur(20px);           /* 苹果标志性的磨砂玻璃模糊技术 */
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 30px; /* 改成胶囊形状，更好看 */
-  padding: 10px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08); /* 极其低调的细边框 */
+  border-radius: 40px;                   /* 完美的胶囊流线型大圆角 */
+  padding: 12px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); /* 微微的悬浮阴影 */
 }
 
-/* 内部弹性盒子布局：让三个标签横向排开 */
+/* 内部盒子：控制三个 Tab 的横向拉伸间距 */
 .nav-content {
   display: flex;
-  gap: 30px; /* 标签之间的间距 */
+  gap: 36px; /* 控制 Mac、iPad、iPhone 每个大标签之间的左右距离 */
 }
 
-/* 标签样式 */
+/* ==========================================================================
+   3. 导航 Tab 单体样式（含 Flex 上下垂直排版）
+   ========================================================================== */
 .nav-link {
-    color: rgba(0, 0, 0, 0.56);
-    text-decoration: none;
-    font-size: 12px;
-    /* 配合图标，文字改小一点 */
-    font-weight: 500;
+  color: rgba(0, 0, 0, 0.56); /* 苹果官方最爱用的低饱和度高级灰文字 */
+  text-decoration: none;      /* 强行去掉超链接自带的丑陋下划线 */
+  font-size: 12px;            /* 极简精致的小字体 */
+  font-weight: 500;
 
-    /* 💡 核心排版：开启弹性盒子，并强制里面的图片和文字上下垂直排列 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* 横向居中对齐 */
-    justify-content: center;
-    /* 纵向居中对齐 */
-    gap: 6px;
-    /* 💡 核心控制：控制图片和文字之间的上下距离 */
-
-    transition: all 0.2s ease;
+  /* 💡 核心排版：强制让它里面的 SVG 图标和文字上下垂直排列 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* 横向居中对齐 */
+  justify-content: center;   /* 纵向居中对齐 */
+  gap: 6px;                  /* 控制小图标和下方文字之间的上下间距 */
+  
+  transition: all 0.25s ease;/* 鼠标悬停时的动效过渡时间 */
 }
 
+/* ==========================================================================
+   4. SVG 本地硬件图标防坍塌终极样式
+   ========================================================================== */
 .tab-icon {
-    width: 24px;     /* 限制图标宽度为 40 像素 */
-    height: 24px;    /* 限制图标高度为 40 像素 */
-    stroke: rgba(0, 0, 0, 0.56); /* 给图标描边也用上苹果的高级灰 */
-   
-    pointer-events: none;
-    transition: all 0.2s ease;
+  display: block;            /* 强行声明为块级，防止在某些高分屏下坍塌不可见 */
+  width: 24px;               /* 严格锁死图标物理宽度 */
+  height: 24px;              /* 严格锁死图标物理高度 */
+  flex-shrink: 0;            /* 绝对防御：防止弹性盒子为了挤压空间把图标压扁成 0 像素 */
+  
+  stroke: rgba(0, 0, 0, 0.56); /* 让图标线条的初始颜色和文字颜色完美同步 */
+  pointer-events: none;      /* 💡 穿上鼠标隐身衣：彻底防止图片拦截点击事件导致逻辑失灵 */
+  
+  transition: all 0.25s ease;
 }
 
-
-/* 悬停变黑 */
+/* ==========================================================================
+   5. 鼠标悬停联动回馈效果（Hover）
+   ========================================================================== */
+/* 当鼠标移入整个 Tab 时，文字自动变黑变亮，展现极强的交互物理反馈 */
 .nav-link:hover {
   color: rgba(0, 0, 0, 0.9);
 }
 
+/* 当鼠标移入整个 Tab 时，图标的线条颜色也同步变黑变清晰 */
 .nav-link:hover .tab-icon {
-   stroke: rgba(0, 0, 0, 0.9);
+  stroke: rgba(0, 0, 0, 0.9);
 }

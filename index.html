@@ -4,67 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>单组件拆解：苹果Tab控件</title>
-    
-    <!-- 💡 霸道内联：直接把你的 CSS 皮肤贴在骨架头上，谁也别想把它俩分开！ -->
-    <style>
-        body {
-          margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif;
-          background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; height: 100vh;
-        }
-        .apple-navbar {
-          background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 30px; padding: 10px 20px;
-        }
-        .nav-content { display: flex; gap: 30px; }
-        .nav-link {
-          color: rgba(0, 0, 0, 0.56); text-decoration: none; font-size: 12px; font-weight: 500;
-          display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s ease;
-        }
-        .tab-icon {
-          width: 24px; height: 24px; stroke: rgba(0, 0, 0, 0.56); pointer-events: none; transition: all 0.2s ease;
-        }
-        .nav-link:hover { color: rgba(0, 0, 0, 0.9); }
-        .nav-link:hover .tab-icon { stroke: rgba(0, 0, 0, 0.9); }
-    </style>
+    <!-- 强行引入外部样式表，确保任何时候皮肤都能正常加载 -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>    
-   <!-- 🍎 100% 本地内联 SVG 导航栏控件 -->
-    <!-- 🍎 100% 绝对显现的本地手绘图标导航栏 -->
-<nav class="apple-navbar">
-    <div class="nav-content">
-        <!-- Mac 标签 -->
-        <a href="#" id="tabMac" class="nav-link">
-            <!-- 💡 核心修正：直接在这里写死 stroke="#333333"（深灰）和 stroke-width="2"（粗细） -->
-            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="12" rx="2" ry="2"></rect>
-                <line x1="2" y1="20" x2="22" y2="20"></line>
-                <line x1="5" y1="16" x2="19" y2="16"></line>
-            </svg>
-            <span>Mac</span>
-        </a>
+    <!-- 🍎 100% 本地内联 SVG 导航栏控件 -->
+    <nav class="apple-navbar">
+        <div class="nav-content">
+            
+            <!-- Mac 标签 -->
+            <a href="#" id="tabMac" class="nav-link">
+                <!-- 笔记本电脑矢量图标：用代码现场绘制，无限清晰且永不丢失 -->
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="12" rx="2" ry="2"></rect>
+                    <line x1="2" y1="20" x2="22" y2="20"></line>
+                    <line x1="5" y1="16" x2="19" y2="16"></line>
+                </svg>
+                <span>Mac</span>
+            </a>
 
-        <!-- iPad 标签 -->
-        <a href="#" id="tabIpad" class="nav-link">
-            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                <line x1="12" y1="18" x2="12.01" y2="18"></line>
-            </svg>
-            <span>iPad</span>
-        </a>
+            <!-- iPad 标签 -->
+            <a href="#" id="tabIpad" class="nav-link">
+                <!-- 平板电脑矢量图标 -->
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <span>iPad</span>
+            </a>
 
-        <!-- iPhone 标签 -->
-        <a href="#" id="tabIphone" class="nav-link">
-            <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                <line x1="12" y1="18" x2="12.01" y2="18"></line>
-            </svg>
-            <span>iPhone</span>
-        </a>
-    </div>
-</nav>
+            <!-- iPhone 标签 -->
+            <a href="#" id="tabIphone" class="nav-link">
+                <!-- 智能手机矢量图标 -->
+                <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                <span>iPhone</span>
+            </a>
 
+        </div>
+    </nav>
 
-    <!-- 核心入口 -->
-    <script type="module" src="script.ts"></script>
+    <!-- 核心运行大脑：老老实实的普通原生 JS 文件 -->
+    <script src="script.js"></script>
 </body>
 </html>

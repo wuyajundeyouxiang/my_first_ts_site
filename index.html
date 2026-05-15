@@ -4,7 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>单组件拆解：苹果Tab控件</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- 💡 霸道内联：直接把你的 CSS 皮肤贴在骨架头上，谁也别想把它俩分开！ -->
+    <style>
+        body {
+          margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif;
+          background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; height: 100vh;
+        }
+        .apple-navbar {
+          background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 30px; padding: 10px 20px;
+        }
+        .nav-content { display: flex; gap: 30px; }
+        .nav-link {
+          color: rgba(0, 0, 0, 0.56); text-decoration: none; font-size: 12px; font-weight: 500;
+          display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s ease;
+        }
+        .tab-icon {
+          width: 24px; height: 24px; stroke: rgba(0, 0, 0, 0.56); pointer-events: none; transition: all 0.2s ease;
+        }
+        .nav-link:hover { color: rgba(0, 0, 0, 0.9); }
+        .nav-link:hover .tab-icon { stroke: rgba(0, 0, 0, 0.9); }
+    </style>
 </head>
 <body>    
    <!-- 🍎 100% 本地内联 SVG 导航栏控件 -->

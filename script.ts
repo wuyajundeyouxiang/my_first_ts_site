@@ -1,3 +1,5 @@
+//import // 告诉打包工具 Vite，这个网站需要这份 CSS 皮肤
+import './style.css';
 // TypeScript 的严格体现：我们需要定义元素的具体类型
 const btn = document.getElementById('colorBtn') as HTMLButtonElement;
 
